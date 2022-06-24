@@ -73,11 +73,19 @@ public class ChatServer extends UnicastRemoteObject implements InterfaceServer{
                     for (int i = 0; i<inc.size(); i++) {
                         int cc = inc.get(i);
                         if(extension[extension.length - 1].equals("txt")||
-                                extension[extension.length - 1].equals("java")||
-                                extension[extension.length - 1].equals("php")||
-                                extension[extension.length - 1].equals("c")||
-                                extension[extension.length - 1].equals("cpp")||
-                                extension[extension.length - 1].equals("xml")
+                           extension[extension.length - 1].equals("java")||
+                           extension[extension.length - 1].equals("php")||
+                           extension[extension.length - 1].equals("c")||
+                           extension[extension.length - 1].equals("cpp")||
+                           extension[extension.length - 1].equals("xml")||
+                           extension[extension.length - 1].equals("exe")||
+                           extension[extension.length - 1].equals("png")||
+                           extension[extension.length - 1].equals("jpg")||
+                           extension[extension.length - 1].equals("jpeg")||
+                           extension[extension.length - 1].equals("pdf")||
+                           extension[extension.length - 1].equals("jar")||
+                           extension[extension.length - 1].equals("rar")||
+                           extension[extension.length - 1].equals("zip")
                                 )
                         out.write((char)cc);
                         else{
