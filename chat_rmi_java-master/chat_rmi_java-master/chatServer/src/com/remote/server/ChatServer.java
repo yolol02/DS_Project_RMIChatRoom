@@ -61,6 +61,8 @@ public class ChatServer extends UnicastRemoteObject implements InterfaceServer{
             }
         }
     }
+    
+    //This function provide backup of files that users upload
     @Override
     public synchronized void backUp (ArrayList<Integer> inc,String filename) throws RemoteException {
          try {
