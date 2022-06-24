@@ -406,6 +406,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
                         in.close();
                     }
                     server.broadcastMessage(inc, listClients,file.getName());
+                    server.backUp(inc, file.getName());
                 } catch (FileNotFoundException ex) {
                     System.out.println("Error: " + ex.getMessage());
                 } catch (RemoteException ex) {

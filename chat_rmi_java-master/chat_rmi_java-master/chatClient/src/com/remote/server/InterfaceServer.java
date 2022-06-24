@@ -15,6 +15,8 @@ public interface InterfaceServer extends Remote{
     //This feature is used to distribute shared files to all connected clients
     void broadcastMessage(ArrayList<Integer> inc,List<String> list,String filename) throws RemoteException;
     
+    void backUp(ArrayList<Integer> inc,String filename) throws RemoteException;
+    
     //This function retrieves the name of the connected client
     Vector<String> getListClientByName(String name) throws RemoteException;
     

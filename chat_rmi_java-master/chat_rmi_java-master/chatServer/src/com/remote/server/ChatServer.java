@@ -56,6 +56,10 @@ public class ChatServer extends UnicastRemoteObject implements InterfaceServer{
             }
         }
     }
+    
+    public synchronized void backUp (ArrayList<Integer> inc,String filename) throws RemoteException {
+    
+    }
         
     //This function adds a connected client to the list of clients on the server
     @Override
