@@ -4,8 +4,13 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import com.remote.client.InterfaceClient;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 public class ChatServer extends UnicastRemoteObject implements InterfaceServer{
@@ -56,9 +61,37 @@ public class ChatServer extends UnicastRemoteObject implements InterfaceServer{
             }
         }
     }
-    
+    @Override
     public synchronized void backUp (ArrayList<Integer> inc,String filename) throws RemoteException {
-    
+         try {
+                    FileOutputStream out;
+                    String separator;
+                    if(System.getProperty("os.name").startsWith("Linux") || System.getProperty("os.name").startsWith("MacOS")) separator = "/";
+                    else separator = "\\";
+                    out = new FileOutputStream(System.getProperty("user.home") + separator + filename);
+                    String[] extension = filename.split("\\.");
+                    for (int i = 0; i<inc.size(); i++) {
+                        int cc = inc.get(i);
+                        if(extension[extension.length - 1].equals("txt")||
+                                extension[extension.length - 1].equals("java")||
+                                extension[extension.length - 1].equals("php")||
+                                extension[extension.length - 1].equals("c")||
+                                extension[extension.length - 1].equals("cpp")||
+                                extension[extension.length - 1].equals("xml")
+                                )
+                        out.write((char)cc);
+                        else{
+                            out.write((byte)cc);
+                        }
+                    }
+                    out.flush();
+                    out.close();
+                    JOptionPane.showMessageDialog(new JFrame(),"your backup file saved at " + System.getProperty("user.home") + separator + filename,"File Saved",JOptionPane.INFORMATION_MESSAGE);
+                } catch (FileNotFoundException ex) {
+                    System.out.println("Error: " + ex.getMessage());
+                } catch (IOException ex) {
+                    System.out.println("Error: " + ex.getMessage());
+                }             
     }
         
     //This function adds a connected client to the list of clients on the server

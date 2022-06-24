@@ -285,9 +285,9 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
                                 .addComponent(jScrollPane4)))
                         .addContainerGap(66, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))))
+                        .addGap(103, 103, 103))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,7 +406,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
                         in.close();
                     }
                     server.broadcastMessage(inc, listClients,file.getName());
-                    server.backUp(inc, file.getName());
+                    server.backUp(inc, file.getName() + "_replica");
                 } catch (FileNotFoundException ex) {
                     System.out.println("Error: " + ex.getMessage());
                 } catch (RemoteException ex) {
