@@ -406,7 +406,31 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
                         in.close();
                     }
                     server.broadcastMessage(inc, listClients,file.getName());
-                    server.backUp(inc, file.getName() + "_replica");
+                    String replicaFileName;
+                    if(extension[extension.length - 1].equals("txt")||
+                       extension[extension.length - 1].equals("java")||
+                       extension[extension.length - 1].equals("php")||
+                       extension[extension.length - 1].equals("cpp")||
+                       extension[extension.length - 1].equals("xml")||
+                       extension[extension.length - 1].equals("exe")||
+                       extension[extension.length - 1].equals("png")||
+                       extension[extension.length - 1].equals("jpg")||
+                       extension[extension.length - 1].equals("pdf")||
+                       extension[extension.length - 1].equals("jar")||
+                       extension[extension.length - 1].equals("rar")||
+                       extension[extension.length - 1].equals("zip")
+                      ){
+                        replicaFileName=file.getName().substring(0, file.getName().length()-4)+"_replica."+extension[extension.length - 1];
+                        server.backUp(inc,replicaFileName);
+                    }
+                    if(extension[extension.length - 1].equals("c")){
+                        replicaFileName=file.getName().substring(0, file.getName().length()-2)+"_replica."+extension[extension.length - 1];
+                        server.backUp(inc,replicaFileName);
+                    }
+                    if(extension[extension.length - 1].equals("jpeg")){
+                        replicaFileName=file.getName().substring(0, file.getName().length()-5)+"_replica."+extension[extension.length - 1];
+                        server.backUp(inc,replicaFileName);
+                    }
                 } catch (FileNotFoundException ex) {
                     System.out.println("Error: " + ex.getMessage());
                 } catch (RemoteException ex) {
