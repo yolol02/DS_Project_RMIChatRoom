@@ -408,7 +408,6 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
                     server.broadcastMessage(inc, listClients,file.getName());
                     String replicaFileName;
                     if(extension[extension.length - 1].equals("txt")||
-                       extension[extension.length - 1].equals("java")||
                        extension[extension.length - 1].equals("php")||
                        extension[extension.length - 1].equals("cpp")||
                        extension[extension.length - 1].equals("xml")||
@@ -427,7 +426,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
                         replicaFileName=file.getName().substring(0, file.getName().length()-2)+"_replica."+extension[extension.length - 1];
                         server.backUp(inc,replicaFileName);
                     }
-                    if(extension[extension.length - 1].equals("jpeg")){
+                    if(extension[extension.length - 1].equals("jpeg")||extension[extension.length - 1].equals("java")){
                         replicaFileName=file.getName().substring(0, file.getName().length()-5)+"_replica."+extension[extension.length - 1];
                         server.backUp(inc,replicaFileName);
                     }
