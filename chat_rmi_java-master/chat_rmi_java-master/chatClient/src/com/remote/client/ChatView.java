@@ -33,14 +33,14 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
     private String name;
     private GroupLayout groupLayout;
     
-    //constructeur
+    //constructor
     public ChatView(String name,String autorization,InterfaceServer server) {
         initComponents();
         
         this.server = server;
         this.name = name;
         
-        //detecter le group de client: simple user ou admin pour bourser a l'admin les permission (activer,block,supprimer) clients
+        //detect the client group: simple user or admin to grant the admin permissions (activate,block,delete) clients
         if(autorization.equals("Administrator")){
             System.out.print(autorization);
             listConnect.setComponentPopupMenu(jPopupMenu1);
@@ -54,7 +54,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
         jPanel1.setLayout(new GridLayout(100,1));
         jPanel1.setBorder(new EmptyBorder(5, 10, 10, 10));
         
-        //questionneé le client avant de cloture chat, si oui on supprimer le dans la liste des client
+        //ask the customer before closing chat, if yes we delete it in the list of customers
         this.addWindowListener(new java.awt.event.WindowAdapter() {    
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -74,7 +74,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
             }
         });
         
-        //un placeholder sur le textfield d'envoyer message
+        //a placeholder on the textfield to send message
         inputMsg.setForeground(Color.GRAY);
         inputMsg.setText("Enter your Message ...");
         inputMsg.addFocusListener(new FocusListener() {
@@ -94,7 +94,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
         }
         });
         
-        //une liste qui contient le nom des clients connectes
+        //a list that contains the names of the connected clients
         listClients = new Vector<>();
         listConnect.setListData(listClients);
         
@@ -104,7 +104,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
             System.out.println("Error: " + ex.getMessage());
         }
         
-        //timer pour a chaque 20s va actualiser la liste des clients connectes 
+        //every 20s will refresh the list of connected clients
         Timer minuteur = new Timer();
         TimerTask tache = new TimerTask() {
             @Override
@@ -354,7 +354,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
         } 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    //action sur le popup menu "blocker clients"
+    //Action on the popup menu "blocker clients"
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         try {
             server.blockClient(listConnect.getSelectedValuesList());
@@ -363,7 +363,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    //action sur le popup menu "activer clients"
+    //action on the popup menu ""activer clients"
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         try {
             server.reactiveClient(listConnect.getSelectedValuesList());
@@ -372,7 +372,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    ////action sur le button "envoyer fichier", premierement en verifié est ce que ce fichier verifié les extensions disponnibles avant d'envoyer
+    //action on the button "send file", first verified is what this file verified the extensions available before sending
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
         int returnValue = jfc.showOpenDialog(null);
@@ -444,7 +444,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
     private javax.swing.JTextArea listMessage;
     // End of variables declaration//GEN-END:variables
 
-    //la fonction de thread pour le button "actualiser"
+    //the thread function for the "refresh" button
     @Override
     public void run() {
         try {
