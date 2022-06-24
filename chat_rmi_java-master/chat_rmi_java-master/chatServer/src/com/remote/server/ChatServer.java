@@ -86,7 +86,7 @@ public class ChatServer extends UnicastRemoteObject implements InterfaceServer{
                     }
                     out.flush();
                     out.close();
-                    JOptionPane.showMessageDialog(new JFrame(),"your backup file saved at " + System.getProperty("user.home") + separator + filename,"File Saved",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(new JFrame(),"The backup file saved at " + System.getProperty("user.home") + separator + filename,"File Saved",JOptionPane.INFORMATION_MESSAGE);
                 } catch (FileNotFoundException ex) {
                     System.out.println("Error: " + ex.getMessage());
                 } catch (IOException ex) {
