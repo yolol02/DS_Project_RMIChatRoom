@@ -142,6 +142,9 @@ public class LoginView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             if(!server.checkUsername(jTextField1.getText())){
+                if(jTextField1.getText().equals("") || jTextField1.getText().contains(" ")|| jPasswordField1.getPassword().length==0){
+                    JOptionPane.showMessageDialog(new JFrame(),"Please double check. Empty fields or spaces not allowed.","Alert",JOptionPane.WARNING_MESSAGE);
+                }
                 if(!jTextField1.getText().equals("") && !jTextField1.getText().contains(" ")&& jPasswordField1.getPassword().length!=0 && jComboBox1.getSelectedItem().equals("Administrator")){
                     new ChatView(jTextField1.getText()+" (admin)",(String)jComboBox1.getSelectedItem(),server).setVisible(true);
                     this.dispose();
