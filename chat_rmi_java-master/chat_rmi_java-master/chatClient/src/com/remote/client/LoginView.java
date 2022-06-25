@@ -145,14 +145,29 @@ public class LoginView extends javax.swing.JFrame {
                 if(jTextField1.getText().equals("") || jTextField1.getText().contains(" ")|| jPasswordField1.getPassword().length==0){
                     JOptionPane.showMessageDialog(new JFrame(),"Please double check. Empty fields or spaces not allowed.","Alert",JOptionPane.WARNING_MESSAGE);
                 }
-                if(!jTextField1.getText().equals("") && !jTextField1.getText().contains(" ")&& jPasswordField1.getPassword().length!=0 && jComboBox1.getSelectedItem().equals("Administrator")){
-                    new ChatView(jTextField1.getText()+" (admin)",(String)jComboBox1.getSelectedItem(),server).setVisible(true);
-                    this.dispose();
-                }
-                if(!jTextField1.getText().equals("") && !jTextField1.getText().contains(" ")&& jPasswordField1.getPassword().length!=0 && !jComboBox1.getSelectedItem().equals("Administrator")){
-                    new ChatView(jTextField1.getText(),(String)jComboBox1.getSelectedItem(),server).setVisible(true);
-                    this.dispose();
-                }
+                
+                      if(!jTextField1.getText().equals("") && !jTextField1.getText().contains(" ")&& jPasswordField1.getPassword().length!=0 && jComboBox1.getSelectedItem().equals("Administrator")){
+                         if(server.getSemaphore().availablePermits()>0){
+                            server.check();
+                            new ChatView(jTextField1.getText()+" (admin)",(String)jComboBox1.getSelectedItem(),server).setVisible(true);
+                            this.dispose();
+                         }
+                         else{
+                            JOptionPane.showMessageDialog(new JFrame(),"The chat room was full","Alert",JOptionPane.WARNING_MESSAGE);
+                         }
+                      }
+                      if(!jTextField1.getText().equals("") && !jTextField1.getText().contains(" ")&& jPasswordField1.getPassword().length!=0 && !jComboBox1.getSelectedItem().equals("Administrator")){
+                         if(server.getSemaphore().availablePermits()>0){
+                            server.check();
+                            new ChatView(jTextField1.getText(),(String)jComboBox1.getSelectedItem(),server).setVisible(true);
+                            this.dispose();
+                         }
+                         else{
+                            JOptionPane.showMessageDialog(new JFrame(),"The chat room was full","Alert",JOptionPane.WARNING_MESSAGE);
+                         }
+                      }
+                
+                
             }else{
                 JOptionPane.showMessageDialog(new JFrame(),"this username has been taken","Alert",JOptionPane.WARNING_MESSAGE);
             }

@@ -64,6 +64,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
                     try {
                         server.removeClient(name);
+                        server.release();
                     } catch (RemoteException ex) {
                         System.out.println("Error: " + ex.getMessage());
                     }
@@ -349,6 +350,7 @@ public class ChatView extends javax.swing.JFrame implements Runnable{
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         try {
             server.removeClient(listConnect.getSelectedValuesList());
+            server.release();
         } catch (RemoteException ex) {
             System.out.println("Error: " + ex.getMessage());
         } 

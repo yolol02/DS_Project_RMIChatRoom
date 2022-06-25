@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.Semaphore;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -16,7 +17,7 @@ import javax.swing.JOptionPane;
 public class ChatServer extends UnicastRemoteObject implements InterfaceServer{
     private final ArrayList<InterfaceClient> clients; //liste contient tous les clients mais qui ne sont pas bloqué 
     private final ArrayList<InterfaceClient> blockedClients; //liste contient tous les clients bloqués
-    
+    Semaphore s = new Semaphore(1);//Initiate semaphore
     //constructer
     public ChatServer() throws RemoteException{
         super();
@@ -201,5 +202,33 @@ public class ChatServer extends UnicastRemoteObject implements InterfaceServer{
             }
         }
         return exist;
+    }
+    
+    //The function checks the number of available tokens before assigning them.
+    @Override
+    public synchronized Semaphore check() throws RemoteException {
+          
+            if(s.availablePermits()!=0){
+              try {
+                 s.acquire();
+            } catch (Exception ex) {
+             System.out.println("Error: " + ex.getMessage());
+            }
+           
+        }
+        return s;
+    }
+    // The function is used to get the updated semaphore
+    @Override
+    public synchronized Semaphore getSemaphore()
+    {
+        return s;
+    }
+    
+    //The function is used to release a token
+    @Override
+    public synchronized void release()
+    {
+        s.release();
     }
 }

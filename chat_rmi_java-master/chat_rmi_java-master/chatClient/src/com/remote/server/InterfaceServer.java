@@ -6,6 +6,7 @@ import com.remote.client.InterfaceClient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.Semaphore;
 
 
 public interface InterfaceServer extends Remote{    
@@ -38,4 +39,13 @@ public interface InterfaceServer extends Remote{
     
     //This function verifies is whether username already exists in the server, because username is an identifier in the chat room
     boolean checkUsername(String username) throws RemoteException;
+    
+     //The function checks the number of available tokens before assigning them.
+    public Semaphore check()throws RemoteException;  
+    
+    // The function is used to get the updated semaphore
+    public Semaphore getSemaphore()throws RemoteException; 
+    
+    //The function is used to release a token
+    public void release()throws RemoteException; 
 }
