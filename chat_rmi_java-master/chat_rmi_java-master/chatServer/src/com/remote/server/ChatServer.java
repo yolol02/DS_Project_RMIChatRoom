@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class ChatServer extends UnicastRemoteObject implements InterfaceServer{
     private final ArrayList<InterfaceClient> clients; //liste contient tous les clients mais qui ne sont pas bloqué 
     private final ArrayList<InterfaceClient> blockedClients; //liste contient tous les clients bloqués
-    Semaphore s = new Semaphore(1);//Initiate semaphore
+    Semaphore s = new Semaphore(3);//Initiate semaphore
     //constructer
     public ChatServer() throws RemoteException{
         super();
